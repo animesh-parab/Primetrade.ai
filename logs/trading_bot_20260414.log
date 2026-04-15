@@ -1,0 +1,42 @@
+2026-04-14 23:36:06 | DEBUG    | client | Binance Futures Testnet client initialized.
+2026-04-14 23:36:07 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:38:39 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:38:39 | DEBUG    | client | Binance Futures Testnet client initialized.
+2026-04-14 23:38:39 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:38:39 | DEBUG    | orders | Placing order with params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-04-14 23:38:40 | ERROR    | orders | Binance API error: 401 - Invalid API-key, IP, or permissions for action
+2026-04-14 23:38:40 | ERROR    | cli | Order failed: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-14 23:40:59 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:40:59 | DEBUG    | client | Binance Futures Testnet client initialized.
+2026-04-14 23:40:59 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:40:59 | DEBUG    | orders | Placing order with params: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-04-14 23:41:00 | ERROR    | orders | Binance API error: 401 - Invalid API-key, IP, or permissions for action
+2026-04-14 23:41:00 | ERROR    | cli | Order failed: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-14 23:42:00 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:42:01 | ERROR    | client | Ping failed: 202 
+2026-04-14 23:43:12 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:43:13 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:43:13 | DEBUG    | orders | Placing order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1776190393026, 'signature': '9cfe956e25e7c896a748d08c1baef879603ca65824567fda7a3345506a9c7543'}
+2026-04-14 23:43:13 | ERROR    | orders | Network error: Expecting value: line 1 column 1 (char 0)
+2026-04-14 23:43:13 | ERROR    | cli | Order failed: Expecting value: line 1 column 1 (char 0)
+2026-04-14 23:43:32 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:43:33 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:43:33 | DEBUG    | orders | Placing order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1776190413441, 'signature': '86bd33c2f1720dd6cf8cee2eafb076beb3518a75995fe6dfb351e4d68762e867'}
+2026-04-14 23:43:34 | DEBUG    | orders | Order response: {} (status: 202)
+2026-04-14 23:43:34 | INFO     | cli | Order placed successfully: orderId=None, status=ACCEPTED
+2026-04-14 23:45:46 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:45:47 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:45:47 | DEBUG    | orders | Placing order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1776190547220, 'signature': 'eeaccd2f82f1a0810ad6aec43346e2e83475ce01d62562ab7642f21cf0c22572'}
+2026-04-14 23:45:47 | DEBUG    | orders | Order response: {'code': -2015, 'msg': 'Invalid API-key, IP, or permissions for action'} (status: 401)
+2026-04-14 23:45:47 | ERROR    | orders | API error -2015: Invalid API-key, IP, or permissions for action
+2026-04-14 23:45:47 | ERROR    | cli | Order failed: API error -2015: Invalid API-key, IP, or permissions for action
+2026-04-14 23:55:26 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=BUY, type=MARKET, qty=0.01, price=None
+2026-04-14 23:55:26 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:55:26 | DEBUG    | orders | Placing order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01, 'timestamp': 1776191126843, 'signature': '81aaab1aaed492cdb091e080026b0aeddd89910b32ad12c3a9a2096ca1990b6d'}
+2026-04-14 23:55:27 | DEBUG    | orders | Order response: {'orderId': 13035285792, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'Bv8zG2rmZz5G5SOtoPDp49', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776191127547} (status: 200)
+2026-04-14 23:55:27 | INFO     | cli | Order placed successfully: orderId=13035285792, status=NEW
+2026-04-14 23:55:48 | DEBUG    | validators | Inputs validated: symbol=BTCUSDT, side=SELL, type=LIMIT, qty=0.01, price=90000.0
+2026-04-14 23:55:49 | INFO     | client | Connection to Binance Futures Testnet successful.
+2026-04-14 23:55:49 | DEBUG    | orders | Placing order: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'timestamp': 1776191149293, 'price': 90000.0, 'timeInForce': 'GTC', 'signature': '69e128f048cf7d4468a4c9b8798449db5beb46a318c769437a0ac229b561d49c'}
+2026-04-14 23:55:49 | DEBUG    | orders | Order response: {'orderId': 13035286472, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'ZgtJ6Lz84qb1rkGfcuJxdr', 'price': '90000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776191150000} (status: 200)
+2026-04-14 23:55:49 | INFO     | cli | Order placed successfully: orderId=13035286472, status=NEW

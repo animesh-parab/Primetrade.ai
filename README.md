@@ -21,6 +21,7 @@ A Python trading bot for placing orders on Binance Futures Demo (USDT-M).
 
 ## How to Run
 
+### CLI
 ```bash
 # Market BUY order
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.01
@@ -31,6 +32,12 @@ python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.01 --price 
 # Stop-Limit BUY order (bonus — supported on live exchange, not demo)
 python cli.py --symbol BTCUSDT --side BUY --type STOP --quantity 0.01 --price 85000 --stop-price 84000
 ```
+
+### Web UI (bonus)
+```bash
+python app.py
+```
+Then open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ## Project Structure
 

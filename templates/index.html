@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Binance Futures Bot</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0b0e11;
+      color: #eaecef;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #1e2329;
+      border: 1px solid #2b3139;
+      border-radius: 12px;
+      padding: 32px;
+      width: 420px;
+    }
+    .card h1 {
+      font-size: 18px;
+      color: #f0b90b;
+      margin-bottom: 6px;
+    }
+    .card p.sub {
+      font-size: 12px;
+      color: #848e9c;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      color: #848e9c;
+      margin-bottom: 4px;
+      margin-top: 14px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      background: #2b3139;
+      border: 1px solid #363c45;
+      border-radius: 6px;
+      color: #eaecef;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus, select:focus { border-color: #f0b90b; }
+    #price-group, #stop-price-group { display: none; }
+    button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 12px;
+      background: #f0b90b;
+      color: #0b0e11;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #d4a009; }
+    button:disabled { background: #555; cursor: not-allowed; }
+    #result {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+    #result.success { background: #0d2e1a; border: 1px solid #03a66d; color: #03a66d; }
+    #result.error   { background: #2e0d0d; border: 1px solid #cf304a; color: #cf304a; }
+    #result table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    #result td { padding: 4px 0; }
+    #result td:first-child { color: #848e9c; width: 120px; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>⚡ Binance Futures Bot</h1>
+  <p class="sub">Binance Futures Demo — USDT-M</p>
+
+  <label>Symbol</label>
+  <input id="symbol" type="text" value="BTCUSDT" placeholder="e.g. BTCUSDT" />
+
+  <label>Side</label>
+  <select id="side">
+    <option value="BUY">BUY</option>
+    <option value="SELL">SELL</option>
+  </select>
+
+  <label>Order Type</label>
+  <select id="order_type" onchange="toggleFields()">
+    <option value="MARKET">MARKET</option>
+    <option value="LIMIT">LIMIT</option>
+    <option value="STOP">STOP</option>
+  </select>
+
+  <label>Quantity</label>
+  <input id="quantity" type="number" step="0.001" placeholder="e.g. 0.01" />
+
+  <div id="price-group">
+    <label>Price</label>
+    <input id="price" type="number" step="0.01" placeholder="e.g. 85000" />
+  </div>
+
+  <div id="stop-price-group">
+    <label>Stop Price</label>
+    <input id="stop_price" type="number" step="0.01" placeholder="e.g. 84000" />
+  </div>
+
+  <button id="btn" onclick="placeOrder()">Place Order</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  function toggleFields() {
+    const type = document.getElementById("order_type").value;
+    document.getElementById("price-group").style.display      = (type === "LIMIT" || type === "STOP") ? "block" : "none";
+    document.getElementById("stop-price-group").style.display = (type === "STOP") ? "block" : "none";
+  }
+
+  async function placeOrder() {
+    const btn = document.getElementById("btn");
+    const result = document.getElementById("result");
+    btn.disabled = true;
+    btn.textContent = "Placing...";
+    result.style.display = "none";
+
+    const payload = {
+      symbol:     document.getElementById("symbol").value.trim().toUpperCase(),
+      side:       document.getElementById("side").value,
+      order_type: document.getElementById("order_type").value,
+      quantity:   document.getElementById("quantity").value,
+      price:      document.getElementById("price").value || null,
+      stop_price: document.getElementById("stop_price").value || null,
+    };
+
+    try {
+      const res = await fetch("/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        const d = json.data;
+        result.className = "success";
+        result.innerHTML = `✅ Order placed successfully!<table>
+          <tr><td>Order ID</td><td>${d.orderId ?? "—"}</td></tr>
+          <tr><td>Status</td><td>${d.status ?? "—"}</td></tr>
+          <tr><td>Symbol</td><td>${d.symbol ?? payload.symbol}</td></tr>
+          <tr><td>Executed Qty</td><td>${d.executedQty ?? "0"}</td></tr>
+          <tr><td>Avg Price</td><td>${d.avgPrice ?? "—"}</td></tr>
+        </table>`;
+      } else {
+        result.className = "error";
+        result.innerHTML = `❌ ${json.error}`;
+      }
+    } catch (e) {
+      result.className = "error";
+      result.innerHTML = "❌ Network error. Is the server running?";
+    }
+
+    result.style.display = "block";
+    btn.disabled = false;
+    btn.textContent = "Place Order";
+  }
+</script>
+</body>
+</html>
